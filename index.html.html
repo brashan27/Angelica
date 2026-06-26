@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Feliz Cumpleaños 🎂</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body{
+    height:100vh;
+    background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+.carta{
+    background:white;
+    width:90%;
+    max-width:450px;
+    padding:30px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+    animation: aparecer 1.5s;
+}
+
+h1{
+    color:#ff4b6e;
+    margin-bottom:15px;
+}
+
+p{
+    color:#444;
+    font-size:18px;
+    line-height:1.5;
+    margin:15px 0;
+}
+
+button{
+    background:#ff4b6e;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:20px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#e83e5b;
+}
+
+#mensaje{
+    display:none;
+    margin-top:20px;
+    animation: aparecer 1s;
+}
+
+.corazon{
+    position:absolute;
+    font-size:25px;
+    animation: caer linear infinite;
+}
+
+@keyframes caer{
+    from{
+        transform:translateY(-350px);
+    }
+    to{
+        transform:translateY(100vh);
+    }
+}
+
+@keyframes aparecer{
+    from{
+        opacity:0;
+        transform:scale(.7);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+img{
+    width:150px;
+    height:150px;
+    object-fit:cover;
+    border-radius:50%;
+    margin-bottom:15px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="carta">
+
+<!-- Puedes cambiar esta imagen por una tuya -->
+<img src="multimedia/Angelica.jpeg">
+
+
+<h1 id="titulo">🎂 Feliz Cumpleaños Mi Amor 🎂</h1>
+
+<p id="texto">
+No creas que me olvide de este dia especial amor
+</p>
+
+
+<button id="boton" onclick="mostrarMensaje()">
+Abrir sorpresa 💌
+</button>
+
+
+<div id="mensaje"></div>
+
+
+<script>
+
+function mostrarMensaje(){
+
+document.getElementById("titulo").style.display="none";
+
+document.getElementById("texto").style.display="none";
+
+document.getElementById("boton").style.display="none";
+
+
+setTimeout(()=>{
+
+    escribirMensaje();
+
+},500);
+
+}
+
+
+function escribirMensaje(){
+
+let mensaje = document.getElementById("mensaje");
+
+let textoOriginal = `
+Amor espero hoy lo estes pasando de lo mejor al lado de tu familia de las personas que te quieren, sobre 
+todo que disfrutes de tu dia este es el primero de muchos cumpleaños en el que estemos juntos. Sabes me hubiera gustado 
+estar ahi contigo en el tu primer cumpleaños como enamorados pero la distancia y el destino no quisieron que fera asi 
+las cosas pasan por algo, pero aun asi no quiero que este dia deje de ser especial para ti por eso quise darte 
+este regalo. No sabes cuantas ganas tengo de verte abrazarte ya es mucho tiempo sin verte espero que la proxima vez 
+que nos veamos no sea muy lejano para estos detalles poderte dartelo en persona pero ya llegara su momento de todo eso por ahora
+estoy feliz de estar contigo, le pido a Dios y la Virgencita que me permita seguir estando a tu lado por muchusimo tiempo
+un abrazo a la distancia...
+
+Te quieroo!!❤️
+`;
+
+mensaje.style.display="block";
+
+mensaje.innerHTML = "";
+
+let i = 0;
+
+
+function escribir(){
+
+    if(i < textoOriginal.length){
+
+        mensaje.innerHTML += textoOriginal.charAt(i);
+
+        i++;
+
+        setTimeout(escribir,50);
+
+    }
+
+}
+
+
+escribir();
+
+}
+
+
+// corazones cayendo
+
+function crearCorazon(){
+
+let corazon=document.createElement("div");
+
+corazon.className="corazon";
+corazon.innerHTML="❤️";
+
+corazon.style.left=Math.random()*100+"%";
+corazon.style.animationDuration=(3+Math.random()*5)+"s";
+corazon.style.fontSize=(15+Math.random()*25)+"px";
+
+document.body.appendChild(corazon);
+
+
+setTimeout(()=>{
+    corazon.remove();
+},8000);
+
+}
+
+
+// Crear corazones siempre
+setInterval(crearCorazon,300);
+
+</script>
+
+
+</body>
+</html>
